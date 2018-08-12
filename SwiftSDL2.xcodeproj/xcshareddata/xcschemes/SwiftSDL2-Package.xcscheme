@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftSDL2::Demo"
-               BuildableName = "Demo"
-               BlueprintName = "Demo"
+               BlueprintIdentifier = "SwiftSDL2::SwiftSDL2Demo"
+               BuildableName = "SwiftSDL2Demo"
+               BlueprintName = "SwiftSDL2Demo"
                ReferencedContainer = "container:SwiftSDL2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
