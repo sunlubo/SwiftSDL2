@@ -11,7 +11,7 @@ let package = Package(
             targets: ["SwiftSDL2"]
         ),
         .executable(
-            name: "Demo",
+            name: "SwiftSDL2Demo",
             targets: ["Demo"]
         )
     ],
