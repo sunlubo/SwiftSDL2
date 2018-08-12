@@ -21,16 +21,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_33 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* main.swift */; };
-		OBJ_35 /* SwiftSDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftSDL2::SwiftSDL2::Product" /* SwiftSDL2.framework */; };
-		OBJ_42 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Audio.swift */; };
-		OBJ_43 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Event.swift */; };
-		OBJ_44 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Renderer.swift */; };
-		OBJ_45 /* SDLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* SDLError.swift */; };
-		OBJ_46 /* Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Surface.swift */; };
-		OBJ_47 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Texture.swift */; };
-		OBJ_48 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Util.swift */; };
-		OBJ_49 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Window.swift */; };
+		OBJ_33 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Audio.swift */; };
+		OBJ_34 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Event.swift */; };
+		OBJ_35 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Renderer.swift */; };
+		OBJ_36 /* SDLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* SDLError.swift */; };
+		OBJ_37 /* Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Surface.swift */; };
+		OBJ_38 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Texture.swift */; };
+		OBJ_39 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Util.swift */; };
+		OBJ_40 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Window.swift */; };
+		OBJ_47 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* main.swift */; };
+		OBJ_49 /* SwiftSDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftSDL2::SwiftSDL2::Product" /* SwiftSDL2.framework */; };
 		OBJ_56 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_67 /* WindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* WindowTests.swift */; };
 		OBJ_68 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* XCTestManifests.swift */; };
@@ -38,21 +38,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A42A983321207C3700C287FF /* PBXContainerItemProxy */ = {
+		A42A983F2120803B00C287FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftSDL2::SwiftSDL2";
 			remoteInfo = SwiftSDL2;
 		};
-		A42A983421207C3700C287FF /* PBXContainerItemProxy */ = {
+		A42A98402120803B00C287FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftSDL2::SwiftSDL2";
 			remoteInfo = SwiftSDL2;
 		};
-		A42A983521207C3700C287FF /* PBXContainerItemProxy */ = {
+		A42A98412120803C00C287FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -74,24 +74,24 @@
 		OBJ_22 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		"SwiftSDL2::Demo::Product" /* Demo */ = {isa = PBXFileReference; lastKnownFileType = text; path = Demo; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftSDL2::SwiftSDL2::Product" /* SwiftSDL2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSDL2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftSDL2::SwiftSDL2Demo::Product" /* SwiftSDL2Demo */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftSDL2Demo; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftSDL2::SwiftSDL2Tests::Product" /* SwiftSDL2Tests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftSDL2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_34 /* Frameworks */ = {
+		OBJ_41 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_35 /* SwiftSDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_50 /* Frameworks */ = {
+		OBJ_48 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				OBJ_49 /* SwiftSDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				"SwiftSDL2::SwiftSDL2Tests::Product" /* SwiftSDL2Tests.xctest */,
-				"SwiftSDL2::Demo::Product" /* Demo */,
+				"SwiftSDL2::SwiftSDL2Demo::Product" /* SwiftSDL2Demo */,
 				"SwiftSDL2::SwiftSDL2::Product" /* SwiftSDL2.framework */,
 			);
 			name = Products;
@@ -172,41 +172,24 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_8 /* Demo */,
+				OBJ_8 /* SwiftSDL2Demo */,
 				OBJ_10 /* SwiftSDL2 */,
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_8 /* Demo */ = {
+		OBJ_8 /* SwiftSDL2Demo */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* main.swift */,
 			);
-			name = Demo;
+			name = SwiftSDL2Demo;
 			path = Sources/Demo;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		"SwiftSDL2::Demo" /* Demo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_29 /* Build configuration list for PBXNativeTarget "Demo" */;
-			buildPhases = (
-				OBJ_32 /* Sources */,
-				OBJ_34 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_36 /* PBXTargetDependency */,
-			);
-			name = Demo;
-			productName = Demo;
-			productReference = "SwiftSDL2::Demo::Product" /* Demo */;
-			productType = "com.apple.product-type.tool";
-		};
 		"SwiftSDL2::SwiftPMPackageDescription" /* SwiftSDL2PackageDescription */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_52 /* Build configuration list for PBXNativeTarget "SwiftSDL2PackageDescription" */;
@@ -223,10 +206,10 @@
 		};
 		"SwiftSDL2::SwiftSDL2" /* SwiftSDL2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_38 /* Build configuration list for PBXNativeTarget "SwiftSDL2" */;
+			buildConfigurationList = OBJ_29 /* Build configuration list for PBXNativeTarget "SwiftSDL2" */;
 			buildPhases = (
-				OBJ_41 /* Sources */,
-				OBJ_50 /* Frameworks */,
+				OBJ_32 /* Sources */,
+				OBJ_41 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,6 +219,23 @@
 			productName = SwiftSDL2;
 			productReference = "SwiftSDL2::SwiftSDL2::Product" /* SwiftSDL2.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		"SwiftSDL2::SwiftSDL2Demo" /* SwiftSDL2Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_43 /* Build configuration list for PBXNativeTarget "SwiftSDL2Demo" */;
+			buildPhases = (
+				OBJ_46 /* Sources */,
+				OBJ_48 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_50 /* PBXTargetDependency */,
+			);
+			name = SwiftSDL2Demo;
+			productName = SwiftSDL2Demo;
+			productReference = "SwiftSDL2::SwiftSDL2Demo::Product" /* SwiftSDL2Demo */;
+			productType = "com.apple.product-type.tool";
 		};
 		"SwiftSDL2::SwiftSDL2Tests" /* SwiftSDL2Tests */ = {
 			isa = PBXNativeTarget;
@@ -274,8 +274,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"SwiftSDL2::Demo" /* Demo */,
 				"SwiftSDL2::SwiftSDL2" /* SwiftSDL2 */,
+				"SwiftSDL2::SwiftSDL2Demo" /* SwiftSDL2Demo */,
 				"SwiftSDL2::SwiftPMPackageDescription" /* SwiftSDL2PackageDescription */,
 				"SwiftSDL2::SwiftSDL2PackageTests::ProductTarget" /* SwiftSDL2PackageTests */,
 				"SwiftSDL2::SwiftSDL2Tests" /* SwiftSDL2Tests */,
@@ -288,22 +288,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_33 /* main.swift in Sources */,
+				OBJ_33 /* Audio.swift in Sources */,
+				OBJ_34 /* Event.swift in Sources */,
+				OBJ_35 /* Renderer.swift in Sources */,
+				OBJ_36 /* SDLError.swift in Sources */,
+				OBJ_37 /* Surface.swift in Sources */,
+				OBJ_38 /* Texture.swift in Sources */,
+				OBJ_39 /* Util.swift in Sources */,
+				OBJ_40 /* Window.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_41 /* Sources */ = {
+		OBJ_46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_42 /* Audio.swift in Sources */,
-				OBJ_43 /* Event.swift in Sources */,
-				OBJ_44 /* Renderer.swift in Sources */,
-				OBJ_45 /* SDLError.swift in Sources */,
-				OBJ_46 /* Surface.swift in Sources */,
-				OBJ_47 /* Texture.swift in Sources */,
-				OBJ_48 /* Util.swift in Sources */,
-				OBJ_49 /* Window.swift in Sources */,
+				OBJ_47 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,20 +327,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_36 /* PBXTargetDependency */ = {
+		OBJ_50 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftSDL2::SwiftSDL2" /* SwiftSDL2 */;
-			targetProxy = A42A983321207C3700C287FF /* PBXContainerItemProxy */;
+			targetProxy = A42A983F2120803B00C287FF /* PBXContainerItemProxy */;
 		};
 		OBJ_61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftSDL2::SwiftSDL2Tests" /* SwiftSDL2Tests */;
-			targetProxy = A42A983521207C3700C287FF /* PBXContainerItemProxy */;
+			targetProxy = A42A98412120803C00C287FF /* PBXContainerItemProxy */;
 		};
 		OBJ_71 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftSDL2::SwiftSDL2" /* SwiftSDL2 */;
-			targetProxy = A42A983421207C3700C287FF /* PBXContainerItemProxy */;
+			targetProxy = A42A98402120803B00C287FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -370,6 +370,7 @@
 		OBJ_30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -378,8 +379,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/.build/checkouts/CSDL2--5628258690141180653",
 				);
-				INFOPLIST_FILE = SwiftSDL2.xcodeproj/Demo_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				INFOPLIST_FILE = SwiftSDL2.xcodeproj/SwiftSDL2_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-I/usr/local/Cellar/sdl2/2.0.8/include",
@@ -390,44 +391,16 @@
 					"-lSDL2",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -I/usr/local/Cellar/sdl2/2.0.8/include";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftSDL2;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
-				TARGET_NAME = Demo;
+				TARGET_NAME = SwiftSDL2;
 			};
 			name = Debug;
 		};
 		OBJ_31 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/.build/checkouts/CSDL2--5628258690141180653",
-				);
-				INFOPLIST_FILE = SwiftSDL2.xcodeproj/Demo_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-I/usr/local/Cellar/sdl2/2.0.8/include",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-L/usr/local/Cellar/sdl2/2.0.8/lib",
-					"-lSDL2",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -I/usr/local/Cellar/sdl2/2.0.8/include";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_VERSION = 4.0;
-				TARGET_NAME = Demo;
-			};
-			name = Release;
-		};
-		OBJ_39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -458,7 +431,7 @@
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = SwiftSDL2;
 			};
-			name = Debug;
+			name = Release;
 		};
 		OBJ_4 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -480,10 +453,9 @@
 			};
 			name = Release;
 		};
-		OBJ_40 /* Release */ = {
+		OBJ_44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -492,8 +464,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/.build/checkouts/CSDL2--5628258690141180653",
 				);
-				INFOPLIST_FILE = SwiftSDL2.xcodeproj/SwiftSDL2_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				INFOPLIST_FILE = SwiftSDL2.xcodeproj/SwiftSDL2Demo_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-I/usr/local/Cellar/sdl2/2.0.8/include",
@@ -504,12 +476,40 @@
 					"-lSDL2",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -I/usr/local/Cellar/sdl2/2.0.8/include";
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftSDL2;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 4.0;
-				TARGET_NAME = SwiftSDL2;
+				TARGET_NAME = SwiftSDL2Demo;
+			};
+			name = Debug;
+		};
+		OBJ_45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/.build/checkouts/CSDL2--5628258690141180653",
+				);
+				INFOPLIST_FILE = SwiftSDL2.xcodeproj/SwiftSDL2Demo_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-I/usr/local/Cellar/sdl2/2.0.8/include",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L/usr/local/Cellar/sdl2/2.0.8/lib",
+					"-lSDL2",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -I/usr/local/Cellar/sdl2/2.0.8/include";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftSDL2Demo;
 			};
 			name = Release;
 		};
@@ -613,7 +613,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_29 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+		OBJ_29 /* Build configuration list for PBXNativeTarget "SwiftSDL2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				OBJ_30 /* Debug */,
@@ -622,11 +622,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_38 /* Build configuration list for PBXNativeTarget "SwiftSDL2" */ = {
+		OBJ_43 /* Build configuration list for PBXNativeTarget "SwiftSDL2Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_39 /* Debug */,
-				OBJ_40 /* Release */,
+				OBJ_44 /* Debug */,
+				OBJ_45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
