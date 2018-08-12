@@ -9,10 +9,6 @@ let package = Package(
         .library(
             name: "SwiftSDL2",
             targets: ["SwiftSDL2"]
-        ),
-        .executable(
-            name: "SwiftSDL2Demo",
-            targets: ["SwiftSDL2Demo"]
         )
     ],
     dependencies: [
@@ -23,9 +19,8 @@ let package = Package(
             name: "SwiftSDL2"
         ),
         .target(
-            name: "SwiftSDL2Demo",
-            dependencies: ["SwiftSDL2"],
-            path: "Sources/Demo"
+            name: "Demo",
+            dependencies: ["SwiftSDL2"]
         ),
         .testTarget(
             name: "SwiftSDL2Tests",
