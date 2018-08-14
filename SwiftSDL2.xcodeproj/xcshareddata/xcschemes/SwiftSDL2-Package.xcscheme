@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftSDL2::SwiftSDL2"
-               BuildableName = "SwiftSDL2.framework"
-               BlueprintName = "SwiftSDL2"
+               BlueprintIdentifier = "SwiftSDL2::SwiftSDL2Demo"
+               BuildableName = "SwiftSDL2Demo"
+               BlueprintName = "SwiftSDL2Demo"
                ReferencedContainer = "container:SwiftSDL2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftSDL2::SwiftSDL2Demo"
-               BuildableName = "SwiftSDL2Demo"
-               BlueprintName = "SwiftSDL2Demo"
+               BlueprintIdentifier = "SwiftSDL2::ThreadDemo"
+               BuildableName = "ThreadDemo"
+               BlueprintName = "ThreadDemo"
+               ReferencedContainer = "container:SwiftSDL2.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftSDL2::SwiftSDL2"
+               BuildableName = "SwiftSDL2.framework"
+               BlueprintName = "SwiftSDL2"
                ReferencedContainer = "container:SwiftSDL2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -69,9 +83,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SwiftSDL2::SwiftSDL2"
-            BuildableName = "SwiftSDL2.framework"
-            BlueprintName = "SwiftSDL2"
+            BlueprintIdentifier = "SwiftSDL2::SwiftSDL2Demo"
+            BuildableName = "SwiftSDL2Demo"
+            BlueprintName = "SwiftSDL2Demo"
             ReferencedContainer = "container:SwiftSDL2.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

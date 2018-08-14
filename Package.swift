@@ -23,6 +23,10 @@ let package = Package(
             dependencies: ["SwiftSDL2"],
             path: "Sources/Demo"
         ),
+        .target(
+            name: "ThreadDemo",
+            dependencies: ["SwiftSDL2"]
+        ),
         .testTarget(
             name: "SwiftSDL2Tests",
             dependencies: ["SwiftSDL2"]
