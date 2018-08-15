@@ -19,8 +19,8 @@ public struct SDLError: Error, Equatable, CustomStringConvertible {
     }
 }
 
-func throwIfFail(_ code: Int32) throws {
-    if code < 0 {
+func throwIfFail(_ code: Int32, predicate: (Int32) -> Bool = { $0 < 0 }) throws {
+    if predicate(code) {
         throw SDLError(code: code)
     }
 }

@@ -61,7 +61,7 @@ extension AudioFormat {
     // 32-bit integer samples in big-endian byte order
     public static let s32msb = UInt16(AUDIO_S32MSB)
     // 32-bit integer samples in native byte order
-    public static let s32sys = UInt16(AUDIO_F32SYS)
+    public static let s32sys = UInt16(AUDIO_S32SYS)
     // AUDIO_S32LSB
     public static let s32 = UInt16(AUDIO_S32)
 
@@ -104,7 +104,6 @@ extension AudioStatus {
 ///   - 7:  FL FR FC LFE BC SL SR       (6.1 surround)
 ///   - 8:  FL FR FC LFE BL BR SL SR    (7.1 surround)
 public typealias AudioSpec = SDL_AudioSpec
-
 public typealias AudioCallback = SDL_AudioCallback
 
 /// Allow change flags
@@ -127,9 +126,9 @@ public final class AudioDevice {
     let deviceId: SDL_AudioDeviceID
 
     /// the desired output format
-    let desiredSpec: AudioSpec
+    public let desiredSpec: AudioSpec
     /// the obtained output format
-    let obtainedSpec: AudioSpec
+    public let obtainedSpec: AudioSpec
 
     /// Create and open a specific audio device. Passing in a device name of nil requests
     /// the most reasonable default (and is equivalent to calling SDL_OpenAudio()).
@@ -201,7 +200,7 @@ public final class AudioDevice {
     ///
     /// - Parameters:
     ///   - index: the index of the audio device; the value ranges from 0 to deviceCount - 1
-    ///   - isCapture: non-zero to specify a device that has recording capability
+    ///   - isCapture: true to specify a device that has recording capability
     /// - Returns: Returns the name of the audio device at the requested index, or nil on error.
     public static func deviceName(index: Int, isCapture: Bool) -> String? {
         assert(index < deviceCount(isCapture: isCapture), "Must be a value between 0 and (number of audio devices-1).")
@@ -235,20 +234,22 @@ public final class AudioDevice {
     }
 }
 
+public let MIX_MAXVOLUME = Int(SDL_MIX_MAXVOLUME)
+
 /// Mix audio data in a specified format.
 ///
 /// - Parameters:
-///   - src: the source audio buffer to be mixed
 ///   - dst: the destination for the mixed audio
+///   - src: the source audio buffer to be mixed
 ///   - format: the desired audio format
 ///   - len: the length of the audio buffer in bytes
-///   - volume: ranges from 0 - 128, and should be set to SDL_MIX_MAXVOLUME for full audio volume
-public func mixAudioFormat(
-    src: UnsafePointer<UInt8>,
+///   - volume: ranges from 0 - 128, and should be set to `MIX_MAXVOLUME` for full audio volume
+public func mixAudio(
     dst: UnsafeMutablePointer<UInt8>,
+    src: UnsafePointer<UInt8>,
     format: AudioFormat,
     len: Int,
-    volume: Int
+    volume: Int = MIX_MAXVOLUME
 ) {
     SDL_MixAudioFormat(dst, src, format, UInt32(len), Int32(volume))
 }

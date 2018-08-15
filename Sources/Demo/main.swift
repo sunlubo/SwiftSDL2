@@ -8,9 +8,7 @@ let renderer = Renderer(window: window)
 let texture = Texture(renderer: renderer, format: .rgba8888, access: .target, width: 640, height: 480)
 
 while true {
-    var event = Event()
-    Events.pollEvent(&event)
-    if event.type == .quit {
+    if let event = Events.poll(), event.type == .quit {
         break
     }
 

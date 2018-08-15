@@ -10,9 +10,8 @@ import CSDL2
 public typealias EventType = SDL_EventType
 
 extension EventType {
-
     /// Unused (do not remove)
-    public static let firstEvent = SDL_FIRSTEVENT
+    public static let first = SDL_FIRSTEVENT
 
     /* Application events */
 
@@ -20,7 +19,7 @@ extension EventType {
     public static let quit = SDL_QUIT
 
     /// This last event is only for bounding internal arrays
-    public static let lastEvent = SDL_LASTEVENT
+    public static let last = SDL_LASTEVENT
 }
 
 extension UInt32 {
@@ -49,11 +48,11 @@ extension Event: CustomStringConvertible {
 
     public var description: String {
         switch EventType(rawValue: type) {
-        case .firstEvent:
+        case .first:
             return "first"
         case .quit:
             return "quit"
-        case .lastEvent:
+        case .last:
             return "last"
         default:
             return "unknown"
@@ -81,7 +80,7 @@ public final class Events {
     /// This function updates the event queue and internal input device state.
     ///
     /// This should only be run in the thread that sets the video mode.
-    public static func pumpEvents() {
+    public static func pump() {
         SDL_PumpEvents()
     }
 
@@ -97,47 +96,64 @@ public final class Events {
     ///   - minType: minimum value of the event type to be considered; SDL_FIRSTEVENT is a safe choice
     ///   - maxType: maximum value of the event type to be considered; SDL_LASTEVENT is a safe choice
     /// - Returns: The number of events actually stored, or -1 if there was an error.
+    /// - Throws: SDLError
     @discardableResult
-    public static func peepEvents(
+    public static func peep(
         _ events: inout [Event],
         count: Int,
         action: EventAction,
-        minType: UInt32 = EventType.firstEvent.rawValue,
-        maxType: Uint32 = EventType.lastEvent.rawValue
-    ) -> Int {
+        minType: UInt32 = EventType.first.rawValue,
+        maxType: Uint32 = EventType.last.rawValue
+    ) throws -> Int {
         precondition(events.capacity >= count, "Please allocate enough memory.")
-        return Int(SDL_PeepEvents(&events, Int32(count), action, minType, maxType))
+        let ret = SDL_PeepEvents(&events, Int32(count), action, minType, maxType)
+        try throwIfFail(ret)
+        return Int(ret)
     }
 
     /// Polls for currently pending events.
     ///
     /// - Parameter event: the next event is removed from the queue and stored in that area.
     /// - Returns: true if there are any pending events, or false if there are none available.
-    @discardableResult
-    public static func pollEvent(_ event: inout Event) -> Bool {
-        return SDL_PollEvent(&event) == 1
+    public static func poll() -> Event? {
+        var event = Event()
+        if SDL_PollEvent(&event) == 1 {
+            return event
+        }
+        return nil
     }
 
     /// Add an event to the event queue.
     ///
     /// - Returns: true on success, otherwise false.
     @discardableResult
-    public static func pushEvent(_ event: inout Event) -> Bool {
+    public static func push(_ event: inout Event) -> Bool {
         return SDL_PushEvent(&event) == 1
     }
 
     /// Waits indefinitely for the next available event.
     ///
-    /// - Parameters:
-    ///   - event: the SDL_Event structure to be filled in with the next event from the queue
-    ///   - timeout: the maximum number of milliseconds to wait for the next available event
-    /// - Returns: true, or false if there was an error while waiting for events.
+    /// - Returns: the next event from the queue, or nil if there was an error while waiting for events.
     @discardableResult
-    public static func waitEvent(_ event: inout Event, timeout: Int = -1) -> Bool {
-        if timeout != -1 {
-            return SDL_WaitEventTimeout(&event, Int32(timeout)) == 1
+    public static func wait() -> Event? {
+        var event = Event()
+        if SDL_WaitEvent(&event) == 1 {
+            return event
         }
-        return SDL_WaitEvent(&event) == 1
+        return nil
+    }
+
+    /// Waits until the specified timeout (in milliseconds) for the next available event.
+    ///
+    /// - Parameter timeout: the maximum number of milliseconds to wait for the next available event
+    /// - Returns: the next event from the queue, or nil if there was an error while waiting for events.
+    @discardableResult
+    public static func wait(timeout: Int) -> Event? {
+        var event = Event()
+        if SDL_WaitEventTimeout(&event, Int32(timeout)) == 1 {
+            return event
+        }
+        return nil
     }
 
     /// Set the state of processing events by type.

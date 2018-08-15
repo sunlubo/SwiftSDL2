@@ -149,6 +149,25 @@ public final class Texture {
         return SDL_SetTextureBlendMode(texturePtr, mode) == 0
     }
 
+    /// Update the given texture rectangle with new pixel data.
+    ///
+    /// - Parameters:
+    ///   - rect: an SDL_Rect structure representing the area to update, or NULL to update the entire texture
+    ///   - pixels: the raw pixel data in the format of the texture
+    ///   - pitch: the number of bytes in a row of pixel data, including padding between lines
+    /// - Throws: SDLError
+    public func update(rect: Rect?, pixels: UnsafeRawPointer, pitch: Int) throws {
+        var rectPtr: UnsafeMutablePointer<SDL_Rect>?
+        defer {
+            rectPtr?.deallocate()
+        }
+        if let rect = rect {
+            rectPtr = UnsafeMutablePointer.allocate(capacity: 1)
+            rectPtr?.initialize(to: rect)
+        }
+        try throwIfFail(SDL_UpdateTexture(texturePtr, rectPtr, pixels, Int32(pitch)))
+    }
+
     /// Update a rectangle within a planar YV12 or IYUV texture with new pixel data.
     ///
     /// - Parameters:
