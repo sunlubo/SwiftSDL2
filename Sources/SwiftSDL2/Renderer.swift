@@ -57,7 +57,7 @@ public final class RendererInfo {
             info.texture_formats.00, info.texture_formats.01, info.texture_formats.02, info.texture_formats.03,
             info.texture_formats.04, info.texture_formats.05, info.texture_formats.06, info.texture_formats.07,
             info.texture_formats.08, info.texture_formats.09, info.texture_formats.10, info.texture_formats.11,
-            info.texture_formats.12, info.texture_formats.13, info.texture_formats.14, info.texture_formats.15,
+            info.texture_formats.12, info.texture_formats.13, info.texture_formats.14, info.texture_formats.15
         ]
         return Array(list.prefix(textureFormatCount))
     }

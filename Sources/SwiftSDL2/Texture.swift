@@ -94,7 +94,9 @@ public final class Texture {
         width: Int,
         height: Int
     ) {
-        guard let texturePtr = SDL_CreateTexture(renderer.rendererPtr, format, Int32(access.rawValue), Int32(width), Int32(height)) else {
+        guard let texturePtr = SDL_CreateTexture(
+            renderer.rendererPtr, format, Int32(access.rawValue), Int32(width), Int32(height)
+        ) else {
             fatalError(String(cString: SDL_GetError()))
         }
         self.texturePtr = texturePtr
@@ -157,15 +159,12 @@ public final class Texture {
     ///   - uPitch: the number of bytes between rows of pixel data for the U plane
     ///   - vPlane: the raw pixel data for the V plane
     ///   - vPitch: the number of bytes between rows of pixel data for the V plane
-    /// - Returns: Returns 0 on success or -1 if the texture is not valid; call SDL_GetError() for more information.
+    /// - Throws: SDLError
     public func updateYUV(
         rect: Rect?,
-        yPlane: UnsafePointer<UInt8>,
-        yPitch: Int,
-        uPlane: UnsafePointer<UInt8>,
-        uPitch: Int,
-        vPlane: UnsafePointer<UInt8>,
-        vPitch: Int
+        yPlane: UnsafePointer<UInt8>, yPitch: Int,
+        uPlane: UnsafePointer<UInt8>, uPitch: Int,
+        vPlane: UnsafePointer<UInt8>, vPitch: Int
     ) throws {
         var rectPtr: UnsafeMutablePointer<SDL_Rect>?
         defer {
@@ -176,7 +175,9 @@ public final class Texture {
             rectPtr?.initialize(to: rect)
         }
         try throwIfFail(
-            SDL_UpdateYUVTexture(texturePtr, rectPtr, yPlane, Int32(yPitch), uPlane, Int32(uPitch), vPlane, Int32(vPitch))
+            SDL_UpdateYUVTexture(
+                texturePtr, rectPtr, yPlane, Int32(yPitch), uPlane, Int32(uPitch), vPlane, Int32(vPitch)
+            )
         )
     }
 }

@@ -32,7 +32,9 @@ public struct SDLInitFlags: OptionSet {
     public static let events = SDLInitFlags(rawValue: SDL_INIT_EVENTS)
     /// compatibility; this flag is ignored.
     public static let noParachute = SDLInitFlags(rawValue: SDL_INIT_NOPARACHUTE)
-    public static let everything = [.timer, .audio, .video, .events, .joyStick, .haptic, .gameController] as SDLInitFlags
+    public static let everything = [
+        .timer, .audio, .video, .events, .joyStick, .haptic, .gameController
+    ] as SDLInitFlags
 }
 
 /// This function initializes the subsystems specified by flags.

@@ -11,27 +11,27 @@ import CSDL2
 
 public final class Mutex {
     fileprivate let mutexPtr: OpaquePointer
-    
+
     /// Create a mutex, initialized unlocked.
     public init() {
         self.mutexPtr = SDL_CreateMutex()
     }
-    
+
     /// Lock the mutex.
     public func lock() {
         SDL_LockMutex(mutexPtr)
     }
-    
+
     /// Try to lock the mutex.
     public func tryLock() -> Bool {
         return SDL_TryLockMutex(mutexPtr) == 0
     }
-    
+
     /// Unlock the mutex.
     public func unlock() {
         SDL_UnlockMutex(mutexPtr)
     }
-    
+
     deinit {
         SDL_DestroyMutex(mutexPtr)
     }
@@ -41,30 +41,30 @@ public final class Mutex {
 
 public final class Semaphore {
     private let semaphorePtr: OpaquePointer
-    
+
     /// Create a semaphore, initialized with value.
     public init(value: Int) {
         self.semaphorePtr = SDL_CreateSemaphore(Uint32(value))
     }
-    
+
     /// Returns the current count of the semaphore.
     public var value: Int {
         return Int(SDL_SemValue(semaphorePtr))
     }
-    
+
     /// This function suspends the calling thread until the semaphore has a positive count.
     /// It then atomically decreases the semaphore count.
     public func wait() {
         SDL_SemWait(semaphorePtr)
     }
-    
+
     /// Non-blocking variant of SDL_SemWait().
     ///
     /// - Returns: true if the wait succeeds
     public func tryWait() -> Bool {
         return SDL_SemTryWait(semaphorePtr) == 0
     }
-    
+
     /// Variant of SDL_SemWait() with a timeout in milliseconds.
     ///
     /// - Parameter timeout: the length of the timeout in milliseconds
@@ -75,12 +75,12 @@ public final class Semaphore {
     public func wait(timeout: Int) -> Bool {
         return SDL_SemWaitTimeout(semaphorePtr, Uint32(timeout)) == 0
     }
-    
+
     /// Atomically increases the semaphore's count (not blocking).
     public func post() {
         SDL_SemPost(semaphorePtr)
     }
-    
+
     deinit {
         SDL_DestroySemaphore(semaphorePtr)
     }
@@ -90,7 +90,7 @@ public final class Semaphore {
 
 public final class Condition {
     private let condPtr: OpaquePointer
-    
+
     /// Create a condition variable.
     ///
     /// There is some discussion whether to signal the condition variable
@@ -102,17 +102,17 @@ public final class Condition {
     public init() {
         self.condPtr = SDL_CreateCond()
     }
-    
+
     /// Restart one of the threads that are waiting on the condition variable.
     public func signal() {
         SDL_CondSignal(condPtr)
     }
-    
+
     /// Restart all threads that are waiting on the condition variable.
     public func broadcast() {
         SDL_CondBroadcast(condPtr)
     }
-    
+
     /// Wait on the condition variable, unlocking the provided mutex.
     ///
     /// The mutex is re-locked once the condition variable is signaled.
@@ -123,7 +123,7 @@ public final class Condition {
     public func wait(mutex: Mutex) {
         SDL_CondWait(condPtr, mutex.mutexPtr)
     }
-    
+
     /// Wait until a condition variable is signaled or a specified amount of time has passed.
     ///
     /// - Parameters:
@@ -136,7 +136,7 @@ public final class Condition {
     public func wait(mutex: Mutex, timeout: Int) -> Bool {
         return SDL_CondWaitTimeout(condPtr, mutex.mutexPtr, Uint32(timeout)) == 0
     }
-    
+
     deinit {
         SDL_DestroyCond(condPtr)
     }

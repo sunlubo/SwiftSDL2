@@ -162,12 +162,12 @@ public final class AudioDevice {
     }
 
     /// Pause audio playback on a specified device.
-    func pause() {
+    public func pause() {
         SDL_PauseAudioDevice(deviceId, 1)
     }
 
     /// Resume audio playback on a specified device.
-    func resume() {
+    public func resume() {
         SDL_PauseAudioDevice(deviceId, 0)
     }
 
@@ -222,7 +222,7 @@ public final class AudioDevice {
     ///
     /// - Parameters:
     ///   - index: the index of the audio driver; the value ranges from 0 to driverCount - 1
-    /// - Returns: Returns the name of the audio driver at the requested index, or nil if an invalid index was specified.
+    /// - Returns: the name of the audio driver at the requested index, or nil if an invalid index was specified.
     public static func driverName(index: Int) -> String? {
         if let strBytes = SDL_GetAudioDriver(Int32(index)) {
             return String(cString: strBytes)
