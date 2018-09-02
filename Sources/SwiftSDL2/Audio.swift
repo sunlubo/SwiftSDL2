@@ -106,23 +106,23 @@ extension AudioStatus {
 public typealias AudioSpec = SDL_AudioSpec
 public typealias AudioCallback = SDL_AudioCallback
 
-/// Allow change flags
-///
-/// Which audio format changes are allowed when opening a device.
-public struct AudioAllowedChangeFlags: OptionSet {
-    public let rawValue: Int32
+public final class AudioDevice {
+    /// Allow change flags
+    ///
+    /// Which audio format changes are allowed when opening a device.
+    public struct AllowedChangeFlags: OptionSet {
+        public let rawValue: Int32
 
-    public init(rawValue: Int32) {
-        self.rawValue = rawValue
+        public init(rawValue: Int32) {
+            self.rawValue = rawValue
+        }
+
+        public static let frequency = AllowedChangeFlags(rawValue: SDL_AUDIO_ALLOW_FREQUENCY_CHANGE)
+        public static let format = AllowedChangeFlags(rawValue: SDL_AUDIO_ALLOW_FORMAT_CHANGE)
+        public static let channels = AllowedChangeFlags(rawValue: SDL_AUDIO_ALLOW_CHANNELS_CHANGE)
+        public static let any = [.frequency, .format, .channels] as AllowedChangeFlags
     }
 
-    public static let frequency = AudioAllowedChangeFlags(rawValue: SDL_AUDIO_ALLOW_FREQUENCY_CHANGE)
-    public static let format = AudioAllowedChangeFlags(rawValue: SDL_AUDIO_ALLOW_FORMAT_CHANGE)
-    public static let channels = AudioAllowedChangeFlags(rawValue: SDL_AUDIO_ALLOW_CHANNELS_CHANGE)
-    public static let any = [.frequency, .format, .channels] as AudioAllowedChangeFlags
-}
-
-public final class AudioDevice {
     let deviceId: SDL_AudioDeviceID
 
     /// the desired output format
@@ -143,16 +143,15 @@ public final class AudioDevice {
         device: String?,
         isCapture: Bool,
         spec: AudioSpec,
-        flags: AudioAllowedChangeFlags
+        flags: AudioDevice.AllowedChangeFlags
     ) throws {
-        var spec = spec
-        var specPtr = UnsafeMutablePointer<AudioSpec>.allocate(capacity: 1)
-        defer { specPtr.deallocate() }
-        let ret = SDL_OpenAudioDevice(device, isCapture ? 1 : 0, &spec, specPtr, flags.rawValue)
-        if ret == 0 { throw SDLError(code: Int32(ret)) }
-        self.deviceId = ret
-        self.desiredSpec = spec
-        self.obtainedSpec = specPtr.pointee
+        var desiredSpec = spec
+        var obtainedSpec = AudioSpec()
+        let deviceId = SDL_OpenAudioDevice(device, isCapture ? 1 : 0, &desiredSpec, &obtainedSpec, flags.rawValue)
+        if deviceId == 0 { throw SDLError(code: Int32(deviceId)) }
+        self.deviceId = deviceId
+        self.desiredSpec = desiredSpec
+        self.obtainedSpec = obtainedSpec
     }
 
     /// The current audio state of an audio device.
@@ -204,10 +203,7 @@ public final class AudioDevice {
     /// - Returns: Returns the name of the audio device at the requested index, or nil on error.
     public static func deviceName(index: Int, isCapture: Bool) -> String? {
         assert(index < deviceCount(isCapture: isCapture), "Must be a value between 0 and (number of audio devices-1).")
-        if let strBytes = SDL_GetAudioDeviceName(Int32(index), isCapture ? 1 : 0) {
-            return String(cString: strBytes)
-        }
-        return nil
+        return String(cString: SDL_GetAudioDeviceName(Int32(index), isCapture ? 1 : 0))
     }
 
     /// Gget the number of built-in audio drivers.
@@ -223,10 +219,7 @@ public final class AudioDevice {
     ///   - index: the index of the audio driver; the value ranges from 0 to driverCount - 1
     /// - Returns: the name of the audio driver at the requested index, or nil if an invalid index was specified.
     public static func driverName(index: Int) -> String? {
-        if let strBytes = SDL_GetAudioDriver(Int32(index)) {
-            return String(cString: strBytes)
-        }
-        return nil
+        return String(cString: SDL_GetAudioDriver(Int32(index)))
     }
 
     deinit {

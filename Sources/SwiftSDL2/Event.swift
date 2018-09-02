@@ -73,7 +73,7 @@ extension EventAction {
     public static let get = SDL_GETEVENT
 }
 
-public final class Events {
+public enum Events {
 
     /// Pumps the event loop, gathering events from the input devices.
     ///

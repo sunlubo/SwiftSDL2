@@ -7,6 +7,12 @@
 
 import CSDL2
 
+func abortIfFail(_ code: Int32, function: String) {
+    if code != 0 {
+        fatalError("\(function): \(String(cString: SDL_GetError())!)")
+    }
+}
+
 // MARK: - Mutex
 
 public final class Mutex {
@@ -18,26 +24,20 @@ public final class Mutex {
     }
 
     /// Lock the mutex.
-    ///
-    /// - Throws: SDLError
-    public func lock() throws {
-        try throwIfFail(SDL_LockMutex(mutexPtr))
+    public func lock() {
+        abortIfFail(SDL_LockMutex(mutexPtr), function: "SDL_LockMutex")
     }
 
     /// Try to lock the mutex.
-    ///
-    /// - Throws: SDLError
-    public func tryLock() throws -> Bool {
+    public func tryLock() -> Bool {
         let ret = SDL_TryLockMutex(mutexPtr)
-        try throwIfFail(ret)
+        abortIfFail(ret, function: "SDL_TryLockMutex")
         return ret != SDL_MUTEX_TIMEDOUT
     }
 
     /// Unlock the mutex.
-    ///
-    /// - Throws: SDLError
-    public func unlock() throws {
-        try throwIfFail(SDL_UnlockMutex(mutexPtr))
+    public func unlock() {
+        abortIfFail(SDL_UnlockMutex(mutexPtr), function: "SDL_UnlockMutex")
     }
 
     deinit {
@@ -62,10 +62,8 @@ public final class Semaphore {
 
     /// This function suspends the calling thread until the semaphore has a positive count.
     /// It then atomically decreases the semaphore count.
-    ///
-    /// - Throws: SDLError
-    public func wait() throws {
-        try throwIfFail(SDL_SemWait(semaphorePtr))
+    public func wait() {
+        abortIfFail(SDL_SemWait(semaphorePtr), function: "SDL_SemWait")
     }
 
     /// Variant of SDL_SemWait() with a timeout in milliseconds.
@@ -76,25 +74,24 @@ public final class Semaphore {
     ///
     /// - Warning: On some platforms this function is implemented by looping with a delay of 1 ms,
     ///   and so should be avoided if possible.
-    public func wait(timeout: Int) throws -> Bool {
+    public func wait(timeout: Int) -> Bool {
         let ret = SDL_SemWaitTimeout(semaphorePtr, Uint32(timeout))
-        try throwIfFail(ret)
+        abortIfFail(ret, function: "SDL_SemWaitTimeout")
         return ret != SDL_MUTEX_TIMEDOUT
     }
 
     /// Non-blocking variant of SDL_SemWait().
     ///
     /// - Returns: true if the wait succeeds
-    /// - Throws: SDLError
-    public func tryWait() throws -> Bool {
+    public func tryWait() -> Bool {
         let ret = SDL_SemTryWait(semaphorePtr)
-        try throwIfFail(ret)
+        abortIfFail(ret, function: "SDL_SemTryWait")
         return ret != SDL_MUTEX_TIMEDOUT
     }
 
     /// Atomically increases the semaphore's count (not blocking).
-    public func post() throws {
-        try throwIfFail(SDL_SemPost(semaphorePtr))
+    public func post() {
+        abortIfFail(SDL_SemPost(semaphorePtr), function: "SDL_SemPost")
     }
 
     deinit {
@@ -120,44 +117,38 @@ public final class Condition {
     }
 
     /// Restart one of the threads that are waiting on the condition variable.
-    ///
-    /// - Throws: SDLError
-    public func signal() throws {
-        try throwIfFail(SDL_CondSignal(condPtr))
+    public func signal() {
+        abortIfFail(SDL_CondSignal(condPtr), function: "SDL_CondSignal")
     }
 
     /// Restart all threads that are waiting on the condition variable.
-    ///
-    /// - Throws: SDLError
-    public func broadcast() throws {
-        try throwIfFail(SDL_CondBroadcast(condPtr))
+    public func broadcast() {
+        abortIfFail(SDL_CondBroadcast(condPtr), function: "SDL_CondBroadcast")
     }
 
     /// Wait on the condition variable, unlocking the provided mutex.
     ///
     /// The mutex is re-locked once the condition variable is signaled.
     ///
-    /// - Parameter mutex: the mutex used to coordinate thread access
-    /// - Throws: SDLError
-    ///
     /// - Warning: The mutex must be locked before entering this function.
-    public func wait(mutex: Mutex) throws {
-        try throwIfFail(SDL_CondWait(condPtr, mutex.mutexPtr))
+    ///
+    /// - Parameter mutex: the mutex used to coordinate thread access
+    public func wait(mutex: Mutex) {
+        abortIfFail(SDL_CondWait(condPtr, mutex.mutexPtr), function: "SDL_CondWait")
     }
 
     /// Wait until a condition variable is signaled or a specified amount of time has passed.
+    ///
+    /// - Warning: On some platforms this function is implemented by looping with a
+    ///   delay of 1 ms, and so should be avoided if possible.
     ///
     /// - Parameters:
     ///   - mutex: the mutex used to coordinate thread access
     ///   - timeout: the maximum time to wait in milliseconds, or SDL_MUTEX_MAXWAIT to wait indefinitely
     /// - Returns: true if the wait succeeds
-    /// - Throws: SDLError
-    ///
-    /// - Warning: On some platforms this function is implemented by looping with a
-    ///   delay of 1 ms, and so should be avoided if possible.
-    public func wait(mutex: Mutex, timeout: Int) throws -> Bool {
+    public func wait(mutex: Mutex, timeout: Int) -> Bool {
         let ret = SDL_CondWaitTimeout(condPtr, mutex.mutexPtr, Uint32(timeout))
-        try throwIfFail(ret)
+        abortIfFail(ret, function: "SDL_CondWaitTimeout")
         return ret != SDL_MUTEX_TIMEDOUT
     }
 

@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		A424439E2126A342008CFA08 /* BlockingQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424439B2126A323008CFA08 /* BlockingQueue.swift */; };
+		A42A0F37213B81E5004B7CA7 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42A0F36213B81E5004B7CA7 /* StringExt.swift */; };
+		A4403728213A715F00B21CF2 /* PointerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4403727213A715F00B21CF2 /* PointerExt.swift */; };
+		A49A8F842134157D006D56AC /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A8F832134157D006D56AC /* Timer.swift */; };
 		OBJ_38 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Audio.swift */; };
 		OBJ_39 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Event.swift */; };
 		OBJ_40 /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Mutex.swift */; };
@@ -73,6 +77,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A424439B2126A323008CFA08 /* BlockingQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingQueue.swift; sourceTree = "<group>"; };
+		A42A0F36213B81E5004B7CA7 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		A4403727213A715F00B21CF2 /* PointerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerExt.swift; sourceTree = "<group>"; };
+		A49A8F832134157D006D56AC /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		OBJ_13 /* Mutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutex.swift; sourceTree = "<group>"; };
@@ -133,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_11 /* Audio.swift */,
+				A42A0F36213B81E5004B7CA7 /* StringExt.swift */,
 				OBJ_12 /* Event.swift */,
 				OBJ_13 /* Mutex.swift */,
 				OBJ_14 /* Renderer.swift */,
@@ -142,6 +151,8 @@
 				OBJ_18 /* Thread.swift */,
 				OBJ_19 /* Util.swift */,
 				OBJ_20 /* Window.swift */,
+				A49A8F832134157D006D56AC /* Timer.swift */,
+				A4403727213A715F00B21CF2 /* PointerExt.swift */,
 			);
 			name = SwiftSDL2;
 			path = Sources/SwiftSDL2;
@@ -192,7 +203,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -201,7 +212,6 @@
 				OBJ_27 /* Dependencies */,
 				OBJ_28 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -218,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* main.swift */,
+				A424439B2126A323008CFA08 /* BlockingQueue.swift */,
 			);
 			name = ThreadDemo;
 			path = Sources/ThreadDemo;
@@ -322,7 +333,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -343,6 +354,8 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_38 /* Audio.swift in Sources */,
+				A42A0F37213B81E5004B7CA7 /* StringExt.swift in Sources */,
+				A4403728213A715F00B21CF2 /* PointerExt.swift in Sources */,
 				OBJ_39 /* Event.swift in Sources */,
 				OBJ_40 /* Mutex.swift in Sources */,
 				OBJ_41 /* Renderer.swift in Sources */,
@@ -351,6 +364,7 @@
 				OBJ_44 /* Texture.swift in Sources */,
 				OBJ_45 /* Thread.swift in Sources */,
 				OBJ_46 /* Util.swift in Sources */,
+				A49A8F842134157D006D56AC /* Timer.swift in Sources */,
 				OBJ_47 /* Window.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				A424439E2126A342008CFA08 /* BlockingQueue.swift in Sources */,
 				OBJ_84 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,7 +1,7 @@
 import SwiftSDL2
 import Darwin
 
-try initSDL(flags: [.video, .audio])
+try initSDL(flags: [.video, .audio, .timer])
 
 let window = Window(title: "hello", width: 640, height: 480, flags: .resizable)
 let renderer = Renderer(window: window)

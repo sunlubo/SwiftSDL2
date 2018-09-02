@@ -197,15 +197,10 @@ public final class Surface {
     ///   - color: the color to fill with
     /// - Throws: SDLError
     public func fillRect(_ rect: Rect?, color: Color) throws {
-        var rectPtr: UnsafeMutablePointer<SDL_Rect>?
-        defer {
-            rectPtr?.deallocate()
+        var rect = rect
+        try withUnsafeMutablePointer(to: &rect) { rectPtr in
+            try throwIfFail(SDL_FillRect(surfacePtr, rectPtr, color.toPixel(with: pixFmt)))
         }
-        if let rect = rect {
-            rectPtr = UnsafeMutablePointer.allocate(capacity: 1)
-            rectPtr?.initialize(to: rect)
-        }
-        try throwIfFail(SDL_FillRect(surfacePtr, rectPtr, color.toPixel(with: pixFmt)))
     }
 
     public func fillRects(_ rects: [Rect], color: Color) throws {
@@ -223,14 +218,9 @@ public final class Surface {
     /// - Note: Blits are automatically clipped to the edges of the source and destination surfaces.
     @discardableResult
     public func clip(_ rect: Rect?) -> Bool {
-        var rectPtr: UnsafeMutablePointer<SDL_Rect>?
-        defer {
-            rectPtr?.deallocate()
+        var rect = rect
+        return withUnsafeMutablePointer(to: &rect) { rectPtr in
+            return SDL_SetClipRect(surfacePtr, rectPtr) == SDL_TRUE
         }
-        if let rect = rect {
-            rectPtr = UnsafeMutablePointer.allocate(capacity: 1)
-            rectPtr?.initialize(to: rect)
-        }
-        return SDL_SetClipRect(surfacePtr, rectPtr) == SDL_TRUE
     }
 }

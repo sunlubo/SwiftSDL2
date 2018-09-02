@@ -61,10 +61,7 @@ public func setHint(name: String, value: String) -> Bool {
 }
 
 public func getEnv(name: String) -> String? {
-    if let strBytes = SDL_getenv(name) {
-        return String(cString: strBytes)
-    }
-    return nil
+    return String(cString: SDL_getenv(name))
 }
 
 public func setEnv(name: String, value: String, overwrite: Bool = true) -> Bool {

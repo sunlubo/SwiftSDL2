@@ -79,6 +79,9 @@ public final class Texture {
 
     /// Create a texture for a rendering context.
     ///
+    /// The created texture is returned, or NULL if no rendering context was active, the format was unsupported,
+    /// or the width or height were out of range.
+    ///
     /// - Parameters:
     ///   - renderer: The renderer.
     ///   - format: The format of the texture.
@@ -87,7 +90,7 @@ public final class Texture {
     ///   - height: The height of the texture in pixels.
     ///
     /// - Note: The contents of the texture are not defined at creation.
-    public init(
+    public init?(
         renderer: Renderer,
         format: UInt32,
         access: TextureAccess,
@@ -97,7 +100,7 @@ public final class Texture {
         guard let texturePtr = SDL_CreateTexture(
             renderer.rendererPtr, format, Int32(access.rawValue), Int32(width), Int32(height)
         ) else {
-            fatalError(String(cString: SDL_GetError()))
+            return nil
         }
         self.texturePtr = texturePtr
     }
@@ -108,21 +111,16 @@ public final class Texture {
     ///   - rect: A pointer to the rectangle to lock for access. If the rect is nil, the entire texture will be locked.
     ///   - pixels: This is filled in with a pointer to the locked pixels, appropriately offset by the locked area.
     ///   - pitch: This is filled in with the pitch of the locked pixels.
-    /// - Returns: true if successful, otherwise false.
+    /// - Returns: true if successful, false if the texture is not valid or was not created with `TextureAccess.streaming`.
     public func lock(
         rect: Rect?,
         pixels: UnsafeMutablePointer<UnsafeMutableRawPointer?>?,
         pitch: inout Int32
     ) -> Bool {
-        var rectPtr: UnsafeMutablePointer<SDL_Rect>?
-        defer {
-            rectPtr?.deallocate()
+        var rect = rect
+        return withUnsafeMutablePointer(to: &rect) { rectPtr in
+            return SDL_LockTexture(texturePtr, rectPtr, pixels, &pitch) == 0
         }
-        if let rect = rect {
-            rectPtr = UnsafeMutablePointer.allocate(capacity: 1)
-            rectPtr?.initialize(to: rect)
-        }
-        return SDL_LockTexture(texturePtr, rectPtr, pixels, &pitch) == 0
     }
 
     /// Unlock a texture, uploading the changes to video memory, if needed.
@@ -157,15 +155,10 @@ public final class Texture {
     ///   - pitch: the number of bytes in a row of pixel data, including padding between lines
     /// - Throws: SDLError
     public func update(rect: Rect?, pixels: UnsafeRawPointer, pitch: Int) throws {
-        var rectPtr: UnsafeMutablePointer<SDL_Rect>?
-        defer {
-            rectPtr?.deallocate()
+        var rect = rect
+        try withUnsafeMutablePointer(to: &rect) { rectPtr in
+            try throwIfFail(SDL_UpdateTexture(texturePtr, rectPtr, pixels, Int32(pitch)))
         }
-        if let rect = rect {
-            rectPtr = UnsafeMutablePointer.allocate(capacity: 1)
-            rectPtr?.initialize(to: rect)
-        }
-        try throwIfFail(SDL_UpdateTexture(texturePtr, rectPtr, pixels, Int32(pitch)))
     }
 
     /// Update a rectangle within a planar YV12 or IYUV texture with new pixel data.
@@ -185,18 +178,13 @@ public final class Texture {
         uPlane: UnsafePointer<UInt8>, uPitch: Int,
         vPlane: UnsafePointer<UInt8>, vPitch: Int
     ) throws {
-        var rectPtr: UnsafeMutablePointer<SDL_Rect>?
-        defer {
-            rectPtr?.deallocate()
-        }
-        if let rect = rect {
-            rectPtr = UnsafeMutablePointer.allocate(capacity: 1)
-            rectPtr?.initialize(to: rect)
-        }
-        try throwIfFail(
-            SDL_UpdateYUVTexture(
-                texturePtr, rectPtr, yPlane, Int32(yPitch), uPlane, Int32(uPitch), vPlane, Int32(vPitch)
+        var rect = rect
+        try withUnsafeMutablePointer(to: &rect) { rectPtr in
+            try throwIfFail(
+                SDL_UpdateYUVTexture(
+                    texturePtr, rectPtr, yPlane, Int32(yPitch), uPlane, Int32(uPitch), vPlane, Int32(vPitch)
+                )
             )
-        )
+        }
     }
 }
